@@ -1,0 +1,19 @@
+.dot {
+  border-radius: 10%;
+  display: inline-block;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+ul {
+  list-style: none;
+}
+body{
+    background-color: #f0f0f0;
+}
