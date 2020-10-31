@@ -65,13 +65,13 @@
             if (is_resource($connection))
             {
 
-                echo '<tr><th class = "bg-success"></th> <td>Réussite</td> <td>TCP</td> <td>'.$i.'</td></tr>';
+                echo '<tr><th class = "bg-success"></th> <td>Réussite</td> <td>#</td> <td>'.$i.'</td></tr>';
                 fclose($connection);
             }
             else
             {
 
-                echo '<tr><th class = "bg-danger"></th> <td>Échec</td> <td>TCP</td> <td>'.$i.'</td></tr>';
+                echo '<tr><th class = "bg-danger"></th> <td>Échec</td> <td>#</td> <td>'.$i.'</td></tr>';
 
             }
         }
