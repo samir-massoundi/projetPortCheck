@@ -10,54 +10,73 @@
     <body class="container">
 
         <main class="row">
-            <header class="col-lg-12">
-                <h1>Test d'ouverture des ports</h1>
+            <header class="col-lg-12 ">
+                <h1 class="text-center">Test ouverture de ports</h1>
             </header>
 
 
             <section class="col-lg-10 offset-lg-1">
-                <h2>Resultat</h2>
-                <p>Domaine testé : </p>
-
-                <table class="table">
-                      <thead>
-                        <tr>
-                          <th ></th>
-                          <th >Resultat</th>
-                          <th >connexion</th>
-                          <th >port</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
 
                           <?php
+                          //Debut de la section
 
-                          $host = 'google.com';
+                          $host = '127.0.0.1';
                           $ports = array(80,255,6550,25);
+
+                          echo '<h2>Resultats :</h2>
+                          <p>Domaine testé :'.$host.' </p>
+
+                          <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th ></th>
+                                    <th >Resultat</th>
+                                    <th >Protocole</th>
+                                    <th >Port</th>
+                                  </tr>
+                                </thead>
+
+                                <tbody>';
 
 
                           foreach ($ports as $port)
                           {
-                              $connection = @fsockopen($host, $port,  $errno, $errstr, 0.15);
+                              $connection = @fsockopen($host, $port,  $errno, $errstr, 0.05);
 
                               if (is_resource($connection))
                               {
 
-                                  echo '<tr><th class = "bg-success"></th> <td>Réussite</td> <td>#</td> <td>'.$port.'</td></tr>';
+                                  echo '<tr><th class = "bg-success"></th> <td>Réussite</td> <td>TCP</td> <td>'.$port.'</td></tr>';
                                   fclose($connection);
                               }
                               else
                               {
 
-                                  echo '<tr><th class = "bg-danger"></th> <td>Échec</td> <td>#</td> <td>'.$port.'</td></tr>';
+                                  echo '<tr><th class = "bg-danger"></th> <td>Échec</td> <td>TCP</td> <td>'.$port.'</td></tr>';
 
                               }
                           }
 
+                          for ($i=50000; $i <50010 ; $i++) {
+                              $connection = @fsockopen($host, $i,  $errno, $errstr, 0.05);
+
+                              if (is_resource($connection))
+                              {
+
+                                  echo '<tr><th class = "bg-success"></th> <td>Réussite</td> <td>TCP</td> <td>'.$i.'</td></tr>';
+                                  fclose($connection);
+                              }
+                              else
+                              {
+
+                                  echo '<tr><th class = "bg-danger"></th> <td>Échec</td> <td>TCP</td> <td>'.$i.'</td></tr>';
+
+                              }
+                          }
+                          echo " </tbody></table>";
                           ?>
 
-                      </tbody>
+
             </section>
 
 
